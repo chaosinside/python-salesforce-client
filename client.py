@@ -48,15 +48,29 @@ class SalesforceClient:
 		response = requests.post(url, headers=self.get_headers(), data=json.dumps(payload))
 		return response
 
-	# update record
-	def record_update(self, object_name, object_id, payload):
-		url = self.instance_url + self.API_ENDPOINT +"sobjects/"+ object_name +"/"+ object_id
-		response = requests.patch(url, headers=self.get_headers(), data=json.dumps(payload))
+	# create list of records
+	# sObject type attribute required in each object: {"attributes": {"type" : "Account"}, "Name": "example.com"}
+	def record_create_list(self, objects, all_or_none=False):
+		payload = { "allOrNone": all_or_none, "records": objects }
+		url = self.instance_url + self.API_ENDPOINT +"composite/sobjects"
+		response = requests.post(url, headers=self.get_headers(), data=json.dumps(payload))
 		return response
 
 	# delete record
 	def record_delete(self, object_name, object_id):
 		url = self.instance_url + self.API_ENDPOINT +"sobjects/"+ object_name +"/"+ object_id
+		response = requests.delete(url, headers=self.get_headers())
+		return response
+
+	# delete list of records
+	def record_delete_list(self, object_ids):
+		url = self.instance_url + self.API_ENDPOINT +"composite/sobjects?ids="+ ",".join(object_ids)
+		response = requests.delete(url, headers=self.get_headers())
+		return response
+
+	# delete record with external id field
+	def record_delete_extid(self, object_name, extid_field_name, ext_id):
+		url = self.instance_url + self.API_ENDPOINT +"sobjects/"+ object_name +"/"+ extid_field_name +"/"+ ext_id
 		response = requests.delete(url, headers=self.get_headers())
 		return response
 
@@ -66,16 +80,16 @@ class SalesforceClient:
 		response = requests.get(url, headers=self.get_headers())
 		return response
 
+	# update record
+	def record_update(self, object_name, object_id, payload):
+		url = self.instance_url + self.API_ENDPOINT +"sobjects/"+ object_name +"/"+ object_id
+		response = requests.patch(url, headers=self.get_headers(), data=json.dumps(payload))
+		return response
+
 	# upsert record with external id field
 	def record_upsert_extid(self, object_name, extid_field_name, ext_id, payload):
 		url = self.instance_url + self.API_ENDPOINT +"sobjects/"+ object_name +"/"+ extid_field_name +"/"+ ext_id
 		response = requests.patch(url, headers=self.get_headers(), data=json.dumps(payload))
-		return response
-
-	# delete record with external id field
-	def record_delete_extid(self, object_name, extid_field_name, ext_id):
-		url = self.instance_url + self.API_ENDPOINT +"sobjects/"+ object_name +"/"+ extid_field_name +"/"+ ext_id
-		response = requests.delete(url, headers=self.get_headers())
 		return response
 
 	# create job
