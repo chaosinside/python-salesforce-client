@@ -1,4 +1,4 @@
-# Salesforce API Client
+# Python Salesforce Client
 
 This is a generic client that can be used to integrate with Salesforce APIs.
 
