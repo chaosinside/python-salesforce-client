@@ -1,34 +1,17 @@
 # Python Salesforce Client
 
-This is a generic client that can be used to integrate with Salesforce APIs.
-
-### Requirements
-* Python (with pip)
-* requests
+A python client for the Salesforce API.
 
 ### Getting Started
 
-It is recommended that you create a virtual environment and then simply install the requests library.
-
-#### Creating a virtual environment
-##### MacOS/Linux
-	python3 -m venv pyenv
-	source pyenv/bin/activate
-
-##### Windows
-	py -m venv pyenv
-	.\pyenv\Scripts\activate
-
-#### Install Requests
-
-	pip install requests
+	pip install SalesforceClient
 
 ### Usage
 SalesforceClient must be initialized with a login_endpoint, username, password, token, client_id, and client_secret. Once intialized, you can use any of the provided functions to return a requests response object.
 
 ### Example
 ```python
-from .client import SalesforceClient
+from SalesforceClient import SalesforceClient
 
 login_endpoint = "https://login.salesforce.com/services/oauth2/token"
 username = "my_username"

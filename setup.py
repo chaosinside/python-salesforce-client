@@ -5,13 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="SalesforceClient",
-    version="1.0.0",
+    version="1.0.1",
     author="Chris Hubbard",
     author_email="chubbard@gmail.com",
     description="A python client for Salesforce",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/chaosinside/python-salesforce-client",
+    install_requires=["requests"],
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

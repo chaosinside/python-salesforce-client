@@ -1,2 +1,6 @@
 .vscode
-pyenv
+*.pyc
+pyenv/
+build/
+dist/
+SalesforceClient.egg-info/
