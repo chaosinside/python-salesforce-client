@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="SalesforceClient",
-    version="1.0.1",
+    version="1.0.3",
     author="Chris Hubbard",
     author_email="chubbard@gmail.com",
     description="A python client for Salesforce",

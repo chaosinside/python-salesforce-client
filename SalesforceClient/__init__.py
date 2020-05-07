@@ -1,1 +1,1 @@
-from client import SalesforceClient
+from .client import SalesforceClient
